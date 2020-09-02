@@ -5,3 +5,10 @@ Megcsináltuk a Githubon a kódtárat, a VS-ben a Windows Dektop WPF (.NET Frame
 és feltöltjük azt a Github-ra
 
 
+A View (MainWindow.xaml.cs) a megjelenítést, a billentyűleütések fogadását és továbbítását végzi.
+
+A Model (ezt létre kell hozni) a billentyűparancsok alapján intézi a játékot
+a Model általában egy folder, ami osztályokat tartalmaz, mi az Arena osztályt csináljuk most meg
+
+
+

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake_2.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace Snake_2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Arena arena;
+
         public MainWindow()
         {
             InitializeComponent();
+            arena = new Arena();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            arena.KeyDown(e);
         }
     }
 }
