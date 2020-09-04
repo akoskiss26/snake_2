@@ -27,3 +27,7 @@ Most már a View paraméterrel hivatkozhatunk a képernyőnkre.
 Az arena.keyDown fgv-be kísérletként beleírjuk, hogy indításkor jelenítse meg a kezdőszöveget a képernyőn, majd ha megnyomódott a nyíl, 
 tüntesse azt el.
 
+Az eredmény megjelenítéséhez ugyanúgy TextBlock-ot használunk, mint a játékszabályokhoz. Alapesetben hidden
+
+Az arena.keyDown fgv-be beírjuk, hogy az első  nyílmegnyomáskor (amikor a játék elindul) váljon láthatóvá az eredmény
+

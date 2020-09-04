@@ -11,9 +11,19 @@
         <TextBlock x:Name="GameplayTextBlock" Margin="60"
                    FontSize="20"
                    HorizontalAlignment="Center"
-                   Visibility="Hidden"
-                   >A játék indításához nyamja meg valamelyik nyíl 
-            gombot</TextBlock>
+                   Visibility="Hidden">
+                   A játék indításához nyamja meg valamelyik nyíl gombot
+        </TextBlock>
+        <TextBlock x:Name="NumberOfMeals"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="80"
+                   Text="0"
+                   FontWeight="Bold"
+                   Foreground="Gray"
+                   Visibility="Hidden">
+                    
+        </TextBlock>
 
     </Grid>
 </Window>
