@@ -26,7 +26,9 @@ namespace Snake_2
         public MainWindow()
         {
             InitializeComponent();
-            arena = new Arena();
+            //anikor létrehozzuk a játékmenetet,
+            //átadjuk paraméterben a képernyőt
+            arena = new Arena(this);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)

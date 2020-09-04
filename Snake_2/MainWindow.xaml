@@ -8,7 +8,12 @@
         KeyDown="Window_KeyDown"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-       
+        <TextBlock x:Name="GameplayTextBlock" Margin="60"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   Visibility="Hidden"
+                   >A játék indításához nyamja meg valamelyik nyíl 
+            gombot</TextBlock>
 
     </Grid>
 </Window>

@@ -9,6 +9,18 @@ namespace Snake_2.Model
 {
     class Arena
     {
+        private MainWindow View;
+
+        public Arena(MainWindow view)
+        {
+            this.View = view;
+
+            // A játék kezdetén megjelenítjük a játékszabályokat
+            View.GameplayTextBlock.Visibility = System.Windows.Visibility.Visible;
+
+
+        }
+
         internal void KeyDown(KeyEventArgs e)
         {
             // a játék kezdéshez vmelyik arrow-t kell lenyomni
@@ -19,6 +31,7 @@ namespace Snake_2.Model
                 case Key.Up:
                 case Key.Right:
                 case Key.Down:
+                    View.GameplayTextBlock.Visibility = System.Windows.Visibility.Hidden;
                     Console.WriteLine(e.Key);
                     break;
                 
