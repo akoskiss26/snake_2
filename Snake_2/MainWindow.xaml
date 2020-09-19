@@ -27,7 +27,7 @@
                     
         </TextBlock>
 
-        <Grid x:Name="ArenaGrid">
+        <Grid x:Name="ArenaGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>

@@ -46,6 +46,7 @@ namespace Snake_2.Model
                     //elindul a játék, eltüntetjük a játékszabályokat, mutatjuk az eredményt
                     View.GameplayTextBlock.Visibility = System.Windows.Visibility.Hidden;
                     View.NumberOfMeals.Visibility = System.Windows.Visibility.Visible;
+                    View.ArenaGrid.Visibility = System.Windows.Visibility.Visible;
                     Console.WriteLine(e.Key);
                     Console.WriteLine(playTime);
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
