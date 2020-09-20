@@ -9,12 +9,8 @@
         KeyDown="Window_KeyDown"
         Title="MainWindow" Height="450" Width="450">
     <Grid>
-        <TextBlock x:Name="GameplayTextBlock" Margin="60"
-                   FontSize="20"
-                   HorizontalAlignment="Center"
-                   Visibility="Hidden">
-                   A játék indításához nyamja meg valamelyik nyíl gombot
-        </TextBlock>
+        
+        
         
         <TextBlock x:Name="NumberOfMeals"
                    HorizontalAlignment="Center"
@@ -27,7 +23,7 @@
                     
         </TextBlock>
 
-        <Grid x:Name="ArenaGrid" Visibility="Hidden">
+        <Grid x:Name="ArenaGrid" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -495,6 +491,20 @@
             <fa:ImageAwesome  Icon="SquareOutline" Grid.Column="19" Grid.Row="19"/>
 
         </Grid>
+
+        <Border x:Name="GamePlayBorder" 
+                Margin="60"
+                Background="Aqua"
+                VerticalAlignment="Top"
+                Visibility="Hidden">
+            <TextBlock x:Name="GameplayTextBlock" 
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   
+                   TextWrapping="Wrap">
+                   A játék indításához nyomja meg valamelyik nyíl gombot
+            </TextBlock>
+        </Border>
 
     </Grid>
 </Window>
