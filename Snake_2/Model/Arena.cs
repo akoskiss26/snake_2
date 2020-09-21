@@ -54,11 +54,11 @@ namespace Snake_2.Model
                     //kígyófej megjelenítése a Children gyűjteménnyel
                     var cell = View.ArenaGrid.Children[10 * 20 + 10];
 
-                    //mivel egy általános ement típust   kaptunk vissza, azt konvertálni kell:
+                    //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
           
                     var image = (FontAwesome.WPF.ImageAwesome)cell;
 
-                    // már el tudim érni az icon tulajdonságait
+                    // ennek már el tudom érni az icon tulajdonságait
                     image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
                     break;

@@ -31,3 +31,14 @@ Az eredmény megjelenítéséhez ugyanúgy TextBlock-ot használunk, mint a ját
 
 Az arena.keyDown fgv-be beírjuk, hogy az első  nyílmegnyomáskor (amikor a játék elindul) váljon láthatóvá az eredmény
 
+Elkészítettük a 20x20-as hálót a grid-ben
+
+Letöltöttük a fontawesome-t (Nuget package) és a square outline icon-t minden egyes kockába beleraktuk
+
+A játékszabályokat tartalmazó TextBlock-ot egy border-be foglaltuk, így az előrehozható a játéktér elé, ez a kezdő képernyő
+
+Megcsináljuk a kígyó fejét:
+	A View.ArenaGrid -beli elemeket a Children nevű gyűjtemény tartalmazza. Ez nullától indexelve van: View.ArenaGrid.Children[121]
+	Ebben a gyűjteményben UIElement típusu elemk vannak, és csak ilyenek lehetnek. A fontawesome icon-jai viszont nem ilyenek. 
+	Most kiveszünk egy elemet a gyűjterményből, és típuskonverzióval (illetve nem pontosan azzal) átalakítjuk, hogy elérjük az icon tulajdonságát
+		ezután az Icon tulajdonságot már át tudjuk írni Circle-re
