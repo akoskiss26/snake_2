@@ -13,8 +13,13 @@ namespace Snake_2.Model
         private MainWindow View;
         private DispatcherTimer pendulumForPlayTime;
         private int playTime = 0;
+        private Snake snake;
 
-        public Arena(MainWindow view)
+        /// <summary>
+        /// ez az arena konstruktor
+        /// </summary>
+        /// <param name="view"></param>
+        public Arena(MainWindow view)  
         {
             this.View = view;
 
@@ -25,7 +30,7 @@ namespace Snake_2.Model
             pendulumForPlayTime = new DispatcherTimer(TimeSpan.FromSeconds(1),DispatcherPriority.Normal, CountPlayTime, Dispatcher.CurrentDispatcher);
             pendulumForPlayTime.Start();
 
-
+            snake = new Snake(10,10);
         }
 
         private void CountPlayTime(object sender, EventArgs e)
