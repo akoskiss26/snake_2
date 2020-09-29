@@ -27,13 +27,20 @@ namespace Snake_2.Model
             View.GamePlayBorder.Visibility = System.Windows.Visibility.Visible;
 
             //taktjeladó
-            pendulumForPlayTime = new DispatcherTimer(TimeSpan.FromSeconds(1),DispatcherPriority.Normal, CountPlayTime, Dispatcher.CurrentDispatcher);
+            pendulumForPlayTime = new DispatcherTimer(TimeSpan.FromSeconds(1),DispatcherPriority.Normal, ItsTimeToDisplay, Dispatcher.CurrentDispatcher);
             pendulumForPlayTime.Start();
 
             snake = new Snake(10,10);
         }
 
-        private void CountPlayTime(object sender, EventArgs e)
+        private void ItsTimeToDisplay(object sender, EventArgs e)
+        {
+            CountPlayTime();
+
+
+        }
+
+        private void CountPlayTime()
         {
             playTime = playTime + 1;
         }
@@ -57,10 +64,9 @@ namespace Snake_2.Model
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
 
                     //kígyófej megjelenítése a Children gyűjteménnyel
-                    var cell = View.ArenaGrid.Children[10 * 20 + 10];
-
+                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition  + snake.HeadPosition.ColumnPositon * 20];
                     //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-          
+
                     var image = (FontAwesome.WPF.ImageAwesome)cell;
 
                     // ennek már el tudom érni az icon tulajdonságait
