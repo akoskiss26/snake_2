@@ -5,7 +5,8 @@
         up,
         down,
         right,
-        left
+        left,
+        InPlace
     }
 
 

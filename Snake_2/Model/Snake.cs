@@ -8,13 +8,12 @@ namespace Snake_2.Model
 {
     class Snake
     {
-        private int RowPosition;
-        private int ColumnPosition;
+       
 
-        public Snake(int row, int column)
+        public Snake(int rowPosition, int columnPositon)
         {
-            this.RowPosition = row;
-            this.ColumnPosition = column;
+            HeadPosition = new ArenaPosition(rowPosition, columnPositon);
+            HeadDirection = SnakeHeadDirectionEnum.InPlace;
         }
 
         public SnakeHeadDirectionEnum HeadDirection { get; set; }
