@@ -37,10 +37,15 @@ namespace Snake_2.Model
 
         private void ItsTimeToDisplay(object sender, EventArgs e)
         {
+            if (isGameNotRunning)
+            {
+                return;
+
+            }
             CountPlayTime();
 
             //léptetjük a kígyó fejét
-            var LastPosition = snake.HeadPosition;
+            var LastPosition = new ArenaPosition(snake.HeadPosition.RowPosition, snake.HeadPosition.ColumnPositon);
             switch (snake.HeadDirection)
             {
                 case SnakeHeadDirectionEnum.up:
@@ -68,6 +73,12 @@ namespace Snake_2.Model
             // ennek már el tudom érni az icon tulajdonságait
             image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
+            // régi fej törlése
+            var cell1 = View.ArenaGrid.Children[LastPosition.RowPosition + LastPosition.ColumnPositon * 20];
+            //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
+            var image1 = (FontAwesome.WPF.ImageAwesome)cell1;
+            // ennek már el tudom érni az icon tulajdonságait
+            image1.Icon = FontAwesome.WPF.FontAwesomeIcon.SquareOutline;
         }
 
         private void CountPlayTime()
@@ -94,7 +105,7 @@ namespace Snake_2.Model
 
                     }
 
-                    switch (e.Key)
+                    switch (e.Key)              //beállítjuk a fej irányát
                     {
                         case Key.Left:
                             snake.HeadDirection = SnakeHeadDirectionEnum.left;
@@ -115,11 +126,13 @@ namespace Snake_2.Model
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
 
                     //kígyófej megjelenítése a Children gyűjteménnyel
-                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
+                    var cell2 = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
                     //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-                    var image = (FontAwesome.WPF.ImageAwesome)cell;
+                    var image2 = (FontAwesome.WPF.ImageAwesome)cell2;
                     // ennek már el tudom érni az icon tulajdonságait
-                    image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
+                    image2.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
+
+                    
 
                     break;
 
