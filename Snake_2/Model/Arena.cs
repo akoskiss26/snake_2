@@ -14,6 +14,7 @@ namespace Snake_2.Model
         private DispatcherTimer pendulumForPlayTime;
         private int playTime = 0;
         private Snake snake;
+        private bool isGameNotRunning;
 
         /// <summary>
         /// ez az arena konstruktor
@@ -31,18 +32,48 @@ namespace Snake_2.Model
             pendulumForPlayTime.Start();
 
             snake = new Snake(10,10);
+            isGameNotRunning = true;
         }
 
         private void ItsTimeToDisplay(object sender, EventArgs e)
         {
             CountPlayTime();
 
+            //léptetjük a kígyó fejét
+            var LastPosition = snake.HeadPosition;
+            switch (snake.HeadDirection)
+            {
+                case SnakeHeadDirectionEnum.up:
+                    snake.HeadPosition.RowPosition = snake.HeadPosition.RowPosition - 1;
+                    break;
+                case SnakeHeadDirectionEnum.down:
+                    snake.HeadPosition.RowPosition = snake.HeadPosition.RowPosition + 1;
+                    break;
+                case SnakeHeadDirectionEnum.right:
+                    snake.HeadPosition.ColumnPositon = snake.HeadPosition.ColumnPositon + 1;
+                    break;
+                case SnakeHeadDirectionEnum.left:
+                    snake.HeadPosition.ColumnPositon = snake.HeadPosition.ColumnPositon - 1;
+                    break;
+                case SnakeHeadDirectionEnum.InPlace:
+                    break;
+                default:
+                    break;
+            }
+
+            //kígyófej megjelenítése a Children gyűjteménnyel
+            var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
+            //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
+            var image = (FontAwesome.WPF.ImageAwesome)cell;
+            // ennek már el tudom érni az icon tulajdonságait
+            image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
         }
 
         private void CountPlayTime()
         {
             playTime = playTime + 1;
+
         }
 
         internal void KeyDown(KeyEventArgs e)
@@ -50,36 +81,60 @@ namespace Snake_2.Model
             // a játék kezdéshez vmelyik arrow-t kell lenyomni
             switch (e.Key)
             {
-                
+
                 case Key.Left:
                 case Key.Up:
                 case Key.Right:
                 case Key.Down:
-                    //elindul a játék, eltüntetjük a játékszabályokat, mutatjuk az eredményt
-                    View.GamePlayBorder.Visibility = System.Windows.Visibility.Hidden;
-                    View.NumberOfMeals.Visibility = System.Windows.Visibility.Visible;
-                    View.ArenaGrid.Visibility = System.Windows.Visibility.Visible;
+
+                    if (isGameNotRunning)
+                    {
+                    StartGame(e);
+
+
+                    }
+
+                    switch (e.Key)
+                    {
+                        case Key.Left:
+                            snake.HeadDirection = SnakeHeadDirectionEnum.left;
+                            break;
+                        case Key.Up:
+                            snake.HeadDirection = SnakeHeadDirectionEnum.up;
+                            break;
+                        case Key.Right:
+                            snake.HeadDirection = SnakeHeadDirectionEnum.right;
+                            break;
+                        case Key.Down:
+                            snake.HeadDirection = SnakeHeadDirectionEnum.down;
+                            break;
+                    }
+
                     Console.WriteLine(e.Key);
                     Console.WriteLine(playTime);
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
 
                     //kígyófej megjelenítése a Children gyűjteménnyel
-                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition  + snake.HeadPosition.ColumnPositon * 20];
+                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
                     //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-
                     var image = (FontAwesome.WPF.ImageAwesome)cell;
-
                     // ennek már el tudom érni az icon tulajdonságait
                     image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
                     break;
-                
+
             }
 
 
         }
 
-
-
+        private void StartGame(KeyEventArgs e)
+        {
+            //elindul a játék, eltüntetjük a játékszabályokat, mutatjuk az eredményt
+            View.GamePlayBorder.Visibility = System.Windows.Visibility.Hidden;
+            View.NumberOfMeals.Visibility = System.Windows.Visibility.Visible;
+            View.ArenaGrid.Visibility = System.Windows.Visibility.Visible;
+            isGameNotRunning = false;
+        }
     }
 }
