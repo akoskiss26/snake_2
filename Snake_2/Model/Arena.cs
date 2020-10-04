@@ -15,6 +15,8 @@ namespace Snake_2.Model
         private int playTime = 0;
         private Snake snake;
         private bool isGameNotRunning;
+        private System.Windows.UIElement cell;
+        private FontAwesome.WPF.ImageAwesome image;
 
         /// <summary>
         /// ez az arena konstruktor
@@ -66,19 +68,39 @@ namespace Snake_2.Model
                     break;
             }
 
-            //kígyófej megjelenítése a Children gyűjteménnyel
-            var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
-            //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-            var image = (FontAwesome.WPF.ImageAwesome)cell;
-            // ennek már el tudom érni az icon tulajdonságait
-            image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
+            if ((snake.HeadPosition.RowPosition >= 0 && snake.HeadPosition.RowPosition < 20)
+                && (snake.HeadPosition.ColumnPositon >= 0 && snake.HeadPosition.ColumnPositon <20))
+            {
+            ShowHead();
+
+            }
+            else
+            {
+                EndOfGame();
+            }
 
             // régi fej törlése
-            var cell1 = View.ArenaGrid.Children[LastPosition.RowPosition + LastPosition.ColumnPositon * 20];
+            cell = View.ArenaGrid.Children[LastPosition.RowPosition + LastPosition.ColumnPositon * 20];
             //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-            var image1 = (FontAwesome.WPF.ImageAwesome)cell1;
+            image = (FontAwesome.WPF.ImageAwesome)cell;
             // ennek már el tudom érni az icon tulajdonságait
-            image1.Icon = FontAwesome.WPF.FontAwesomeIcon.SquareOutline;
+            image.Icon = FontAwesome.WPF.FontAwesomeIcon.SquareOutline;
+        }
+
+        private void EndOfGame()
+        {
+            Console.WriteLine("End of Game");
+            return;
+        }
+
+        private void ShowHead()
+        {
+            //kígyófej megjelenítése a Children gyűjteménnyel
+            cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
+            //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
+            image = (FontAwesome.WPF.ImageAwesome)cell;
+            // ennek már el tudom érni az icon tulajdonságait
+            image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
         }
 
         private void CountPlayTime()
@@ -126,11 +148,11 @@ namespace Snake_2.Model
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
 
                     //kígyófej megjelenítése a Children gyűjteménnyel
-                    var cell2 = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
+                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
                     //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-                    var image2 = (FontAwesome.WPF.ImageAwesome)cell2;
+                    var image = (FontAwesome.WPF.ImageAwesome)cell;
                     // ennek már el tudom érni az icon tulajdonságait
-                    image2.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
+                    image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
                     
 
