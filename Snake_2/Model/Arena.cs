@@ -77,6 +77,7 @@ namespace Snake_2.Model
             else
             {
                 EndOfGame();
+                return;
             }
 
             // régi fej törlése
@@ -90,7 +91,7 @@ namespace Snake_2.Model
         private void EndOfGame()
         {
             Console.WriteLine("End of Game");
-            return;
+            pendulumForPlayTime.Stop();
         }
 
         private void ShowHead()
