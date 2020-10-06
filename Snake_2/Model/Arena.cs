@@ -149,11 +149,11 @@ namespace Snake_2.Model
                     View.NumberOfMeals.Text = Convert.ToString(playTime);
 
                     //kígyófej megjelenítése a Children gyűjteménnyel
-                    var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
+                    //var cell = View.ArenaGrid.Children[snake.HeadPosition.RowPosition + snake.HeadPosition.ColumnPositon * 20];
                     //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
-                    var image = (FontAwesome.WPF.ImageAwesome)cell;
+                    //var image = (FontAwesome.WPF.ImageAwesome)cell;
                     // ennek már el tudom érni az icon tulajdonságait
-                    image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
+                    //image.Icon = FontAwesome.WPF.FontAwesomeIcon.Circle;
 
                     
 
