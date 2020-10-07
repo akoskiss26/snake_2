@@ -17,6 +17,9 @@ namespace Snake_2.Model
         private bool isGameNotRunning;
         private System.Windows.UIElement cell;
         private FontAwesome.WPF.ImageAwesome image;
+        private ArenaPosition LastPosition;
+        private ArenaPosition neckPosition;
+        
 
         /// <summary>
         /// ez az arena konstruktor
@@ -35,6 +38,9 @@ namespace Snake_2.Model
 
             snake = new Snake(10,10);
             isGameNotRunning = true;
+
+            snake.Tail = new List<ArenaPosition>();
+
         }
 
         private void ItsTimeToDisplay(object sender, EventArgs e)
@@ -47,7 +53,7 @@ namespace Snake_2.Model
             CountPlayTime();
 
             //léptetjük a kígyó fejét
-            var LastPosition = new ArenaPosition(snake.HeadPosition.RowPosition, snake.HeadPosition.ColumnPositon);
+            LastPosition = new ArenaPosition(snake.HeadPosition.RowPosition, snake.HeadPosition.ColumnPositon);
             switch (snake.HeadDirection)
             {
                 case SnakeHeadDirectionEnum.up:
@@ -69,9 +75,11 @@ namespace Snake_2.Model
             }
 
             if ((snake.HeadPosition.RowPosition >= 0 && snake.HeadPosition.RowPosition < 20)
-                && (snake.HeadPosition.ColumnPositon >= 0 && snake.HeadPosition.ColumnPositon <20))
+                && (snake.HeadPosition.ColumnPositon >= 0 && snake.HeadPosition.ColumnPositon < 20))
             {
-            ShowHead();
+                ShowHead();
+                EraseOldHead();
+                ShowNeck();
 
             }
             else
@@ -80,6 +88,32 @@ namespace Snake_2.Model
                 return;
             }
 
+        }
+
+        private void ShowNeck()
+        {
+            neckPosition = new ArenaPosition (LastPosition.RowPosition, LastPosition.ColumnPositon);
+            snake.Tail.Add(neckPosition);
+            if (snake.Tail.Count() > 5)
+            {
+                snake.Tail.RemoveAt(5);
+                Console.WriteLine("Last item was removed from Tail");
+            }
+
+            foreach (var item in snake.Tail)
+            {
+                //kígyófej megjelenítése a Children gyűjteménnyel
+                cell = View.ArenaGrid.Children[item.RowPosition + item.ColumnPositon * 20];
+                //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
+                image = (FontAwesome.WPF.ImageAwesome)cell;
+                // ennek már el tudom érni az icon tulajdonságait
+                image.Icon = FontAwesome.WPF.FontAwesomeIcon.CircleOutline;
+            }
+
+        }
+
+        private void EraseOldHead()
+        {
             // régi fej törlése
             cell = View.ArenaGrid.Children[LastPosition.RowPosition + LastPosition.ColumnPositon * 20];
             //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:

@@ -42,3 +42,10 @@ Megcsináljuk a kígyó fejét:
 	Ebben a gyűjteményben UIElement típusu elemk vannak, és csak ilyenek lehetnek. A fontawesome icon-jai viszont nem ilyenek. 
 	Most kiveszünk egy elemet a gyűjterményből, és típuskonverzióval (illetve nem pontosan azzal) átalakítjuk, hogy elérjük az icon tulajdonságát
 		ezután az Icon tulajdonságot már át tudjuk írni Circle-re
+
+
+Ha a kígyó feje beleütközik a játéktér határába, a játék befejeződik
+
+## Tárolni kell a pozicióját, és meg kell jeleníteni a kígyó testét
+
+

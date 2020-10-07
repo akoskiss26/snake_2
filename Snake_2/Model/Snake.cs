@@ -21,6 +21,9 @@ namespace Snake_2.Model
         public ArenaPosition HeadPosition { get; set; }
 
 
+        public List<ArenaPosition> Tail { get; set; }
+
+
 
     }
     
