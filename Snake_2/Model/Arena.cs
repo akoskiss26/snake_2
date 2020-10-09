@@ -96,7 +96,14 @@ namespace Snake_2.Model
             snake.Tail.Add(neckPosition);
             if (snake.Tail.Count() > 5)
             {
-                snake.Tail.RemoveAt(5);
+                var tailToRemove = snake.Tail[0];
+                //kígyófarok eltüntetése a Children gyűjteménnyel
+                cell = View.ArenaGrid.Children[tailToRemove.RowPosition + tailToRemove.ColumnPositon * 20];
+                //mivel egy általános element típust   kaptunk vissza, azt konvertálni kell:
+                image = (FontAwesome.WPF.ImageAwesome)cell;
+                // ennek már el tudom érni az icon tulajdonságait
+                image.Icon = FontAwesome.WPF.FontAwesomeIcon.SquareOutline;
+                snake.Tail.RemoveAt(0);
                 Console.WriteLine("Last item was removed from Tail");
             }
 
